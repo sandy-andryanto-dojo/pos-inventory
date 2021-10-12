@@ -1,0 +1,63 @@
+@extends('layouts.app')
+@section('title') {{ $title }} @endsection
+@section('content')
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        {{ $title }}
+        <small>{{ $subtitle }}</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{ url('') }}"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="#">Product</a></li>
+        <li class="active">{{ $title }}</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    @include('layouts.alert')
+    <!-- Default box -->
+    <div class="box {{ CommonHelper::getBoxTheme() }}">
+        <div class="box-header with-border">
+            <div class="clearfix">
+                <div class="pull-left">
+                    <h3 class="box-title">
+                         <i class="fa fa-list"></i>&nbsp;List {{ $title }}
+                    </h3>
+                </div>
+                <div class="pull-right">
+                    @can("add_".$route)
+                    <a class="btn btn-success btn-sm" href="{{ route($route.'.create') }}" data-toggle='tooltip' data-placement='top'  data-original-title='Add New'>
+                        <i class="fa fa-plus"></i>&nbsp;Add New
+                    </a>
+                    @endcan
+                </div>
+            </div>
+        </div>
+        <div class="box-body">
+            <table class="table table-striped" data-permissions="{{ base64_encode(json_encode($permissions)) }}"  data-route-crud="{{ route($route.'.index') }}" data-model="{{ $dataTableModel }}"  id="data-table">
+                <thead>
+                    <tr>
+                        <th>SKU</th>
+                        <th>Name</th>
+                        <th>Brand</th>
+                        <th>Category</th>
+                        <th>Group</th>
+                        <th>Stock</th>
+                        <th>Price Purchase</th>
+                        <th>Price Sale</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div><!-- /.box -->
+</section><!-- /.content -->
+
+@endsection
+
+@section('scripts')
+<script src="{{ asset('assets/scripts/product.item.js') }}?{{ time() }}"></script>
+@endsection
