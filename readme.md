@@ -40,7 +40,7 @@ Laravel Mini Market is an open source web based point of sales system built on L
 
 <div class="highlight highlight-source-shell">
 <pre>
-git clone https://github.com/sandyandryantoo/laravel-minimarket.git
+git clone https://github.com/sandy-andryanto-dojo/pos-inventory
 <span class="pl-c1">cd</span> laravel-minimarket
 composer update
 cp .env.example .env 
